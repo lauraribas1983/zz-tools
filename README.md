@@ -4,15 +4,11 @@
 
 Herramienta para generar fichas técnicas de rayas con colores PANTONE y exportación PDF.
 
-## Uso
+## 👉 Abrir herramienta
 
-Abre directamente en el navegador: **[ZZ Rayas →](https://TU_USUARIO.github.io/zz-rayas/)**
+**[https://lauraribas1983.github.io/zz-tools/](https://lauraribas1983.github.io/zz-tools/)**
 
-No requiere instalación. Funciona en Chrome, Edge y Firefox.
-
-## Cómo compartir
-
-Comparte el link de GitHub Pages con tus compañeras. No necesitan descargar nada.
+No requiere instalación. Funciona en Chrome, Edge y Firefox. Compartir este link con compañeras.
 
 ## Qué incluye la ficha PDF
 
@@ -20,4 +16,4 @@ Comparte el link de GitHub Pages con tus compañeras. No necesitan descargar nad
 - Página 2: Ficha técnica con silueta de prenda, chips PANTONE y swatch de colores
 
 ---
-*ZZ Studio · Herramientas de diseño y producción*
+*ZZ Studio · Zig Zag Confección S.A.*
