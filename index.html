@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZZ Rayas — Fichas Técnicas</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #EDEBE5;
+  color: #1B2A4A;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* ── HEADER ── */
+.header {
+  background: #1B2A4A;
+  color: white;
+  padding: 0 24px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+.logo-box {
+  background: white;
+  color: #1B2A4A;
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: 2px;
+  padding: 3px 9px;
+  border-radius: 3px;
+  line-height: 1;
+}
+.header-title { font-size: 14px; font-weight: 600; letter-spacing: 0.3px; }
+.header-sub { font-size: 11px; opacity: 0.6; margin-top: 1px; }
+.header-badge {
+  margin-left: auto;
+  font-size: 11px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.3px;
+}
+
+/* ── LAYOUT ── */
+.layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  height: calc(100vh - 52px);
+}
+
+/* ── LEFT PANEL ── */
+.panel {
+  background: white;
+  border-right: 1px solid #D8D4CA;
+  overflow-y: auto;
+  padding: 0;
+}
+.panel-section {
+  padding: 16px 20px;
+  border-bottom: 1px solid #F0EDE7;
+}
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #1B2A4A;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 11px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #E8E4DC;
+}
+
+/* ── INPUTS ── */
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1.5px solid #E0DDD8;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #1B2A4A;
+  background: white;
+  font-family: inherit;
+  transition: border-color 0.15s;
+}
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  outline: none;
+  border-color: #1B2A4A;
+}
+.field-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+}
+
+/* ── PRESET ROW ── */
+.preset-row { display: flex; gap: 8px; align-items: flex-end; }
+.preset-row select { flex: 1; }
+.btn-load {
+  padding: 8px 14px;
+  background: #1B2A4A;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.btn-load:hover { background: #273F6E; }
+
+/* ── FORM GRID ── */
+.form-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* ── ORIENTATION ── */
+.orient-row { display: flex; gap: 6px; margin-top: 10px; }
+.orient-btn {
+  flex: 1;
+  padding: 8px;
+  border: 1.5px solid #E0DDD8;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1B2A4A;
+  background: white;
+  transition: all 0.15s;
+}
+.orient-btn.active {
+  background: #1B2A4A;
+  color: white;
+  border-color: #1B2A4A;
+}
+
+/* ── STRIPES ── */
+.stripes-header {
+  display: grid;
+  grid-template-columns: 38px 95px 1fr 60px 28px;
+  gap: 6px;
+  padding: 0 0 6px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #AAA;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+#stripes-container { min-height: 20px; }
+.stripe-row {
+  display: grid;
+  grid-template-columns: 38px 95px 1fr 60px 28px;
+  gap: 6px;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px solid #F5F3EF;
+}
+.stripe-row:last-child { border-bottom: none; }
+input[type="color"] {
+  width: 38px;
+  height: 34px;
+  border: 1.5px solid #E0DDD8;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 2px;
+  background: white;
+}
+.stripe-row input[type="text"],
+.stripe-row input[type="number"] {
+  padding: 7px 8px;
+  font-size: 11px;
+}
+.stripe-row input[type="number"] { text-align: center; }
+.btn-remove {
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: 1px solid #E0DDD8;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #BBB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: all 0.12s;
+  flex-shrink: 0;
+}
+.btn-remove:hover { border-color: #CC4444; color: #CC4444; background: #FFF5F5; }
+
+.btn-add {
+  width: 100%;
+  margin-top: 10px;
+  padding: 9px;
+  background: transparent;
+  border: 1.5px dashed #C8C5C0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #1B2A4A;
+  font-weight: 600;
+  transition: border-color 0.15s;
+}
+.btn-add:hover { border-color: #1B2A4A; }
+
+.raport-box {
+  margin-top: 10px;
+  padding: 9px 12px;
+  background: #F5F3EF;
+  border-radius: 6px;
+  font-size: 11px;
+  color: #555;
+  line-height: 1.5;
+}
+.raport-box strong { color: #1B2A4A; }
+
+/* ── EXPORT BUTTONS ── */
+.btn-pdf {
+  width: 100%;
+  padding: 12px;
+  background: #1B2A4A;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: background 0.15s;
+  margin-bottom: 8px;
+}
+.btn-pdf:hover { background: #273F6E; }
+.btn-refresh {
+  width: 100%;
+  padding: 9px;
+  background: transparent;
+  color: #1B2A4A;
+  border: 1.5px solid #1B2A4A;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+.btn-refresh:hover { background: #F0EEE8; }
+.export-note {
+  text-align: center;
+  font-size: 10px;
+  color: #AAA;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+/* ── RIGHT PANEL ── */
+.preview-panel {
+  background: #EDEBE5;
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  overflow: auto;
+  align-items: flex-start;
+}
+.preview-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.preview-tag {
+  font-size: 10px;
+  font-weight: 700;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.canvas-wrap {
+  background: white;
+  box-shadow: 0 3px 16px rgba(0,0,0,0.14);
+  border-radius: 3px;
+  overflow: hidden;
+  line-height: 0;
+}
+canvas { display: block; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <span class="logo-box">ZZ</span>
+  <div>
+    <div class="header-title">ZZ Studio · Fichas de Rayas</div>
+    <div class="header-sub">Zig Zag Confección S.A. · Sin servidor · Funciona en cualquier navegador</div>
+  </div>
+  <span class="header-badge">📄 Sin instalación — Comparte por Drive</span>
+</header>
+
+<div class="layout">
+
+  <!-- ── LEFT PANEL ── -->
+  <div class="panel">
+
+    <!-- Presets -->
+    <div class="panel-section">
+      <div class="section-label">Presets rápidos</div>
+      <div class="preset-row">
+        <select id="preset-select">
+          <option value="">— Selecciona un preset —</option>
+          <option value="navy_crema">Navy + Crema (Marinière Clásica)</option>
+          <option value="tricolor_zz">Tricolor ZZ — Navy · Crema · Burgundy</option>
+          <option value="breton">Breton Clásico</option>
+          <option value="negro_blanco">Negro + Blanco</option>
+          <option value="rojo_blanco">Rojo + Blanco Sport</option>
+          <option value="terracotta">Terracotta SS26</option>
+          <option value="varsity">Multicolor Varsity</option>
+          <option value="lavanda">Lavanda + Blanco Roto</option>
+        </select>
+        <button class="btn-load" onclick="loadPreset()">↓ Cargar</button>
+      </div>
+    </div>
+
+    <!-- Variante -->
+    <div class="panel-section">
+      <div class="section-label">Datos de la variante</div>
+      <div class="form-2col">
+        <div>
+          <div class="field-label">Nombre variante</div>
+          <input type="text" id="nombre-variante" value="Marinière Clásica" placeholder="Ej: Tricolor Navy">
+        </div>
+        <div>
+          <div class="field-label">Ref / Temporada</div>
+          <input type="text" id="ref-variante" value="SS26" placeholder="AW26 / SS26">
+        </div>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="field-label">Orientación del tejido</div>
+        <div class="orient-row">
+          <button class="orient-btn active" id="btn-horiz" onclick="setOrient('horizontal')">↔ Horizontal</button>
+          <button class="orient-btn" id="btn-vert" onclick="setOrient('vertical')">↕ Vertical</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rayas -->
+    <div class="panel-section">
+      <div class="section-label">Rayas del patrón</div>
+      <div class="stripes-header">
+        <span>Color</span>
+        <span>PANTONE TCX</span>
+        <span>Nombre</span>
+        <span>Ancho cm</span>
+        <span></span>
+      </div>
+      <div id="stripes-container"></div>
+      <button class="btn-add" onclick="addStripe('#FFFFFF','','Nueva raya','1.0')">＋ Añadir raya</button>
+      <div class="raport-box" id="raport-info">Sin rayas definidas.</div>
+    </div>
+
+    <!-- Exportar -->
+    <div class="panel-section">
+      <div class="section-label">Exportar</div>
+      <button class="btn-pdf" onclick="downloadPDF()">〰 Descargar Ficha PDF (2 páginas)</button>
+      <button class="btn-refresh" onclick="updatePreview()">↺ Actualizar vista previa</button>
+      <div class="export-note">
+        PDF A4 apaisado · Pág 1: Patrón full-bleed · Pág 2: Ficha técnica<br>
+        Abre este archivo en Chrome, Edge o Firefox · No necesita Python
+      </div>
+    </div>
+
+  </div><!-- /panel -->
+
+  <!-- ── RIGHT PANEL ── -->
+  <div class="preview-panel" id="preview-panel">
+    <div class="preview-block">
+      <div class="preview-tag">Ficha técnica</div>
+      <div class="canvas-wrap">
+        <canvas id="canvas-ficha" width="840" height="596"></canvas>
+      </div>
+    </div>
+    <div class="preview-block">
+      <div class="preview-tag">Patrón full-bleed</div>
+      <div class="canvas-wrap">
+        <canvas id="canvas-patron" width="840" height="596"></canvas>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /layout -->
+
+<!-- jsPDF from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+// ════════════════════════════════════════════════════════════
+//  PRESETS
+// ════════════════════════════════════════════════════════════
+const PRESETS = {
+  navy_crema: {
+    nombre: 'Marinière Clásica', ref: 'SS26',
+    rayas: [
+      { hex:'#00205B', pantone:'19-4034 TCX', nombre:'Navy Blazer',   ancho:2.0 },
+      { hex:'#EFE9DA', pantone:'11-4001 TCX', nombre:'Whisper White', ancho:2.5 },
+    ]
+  },
+  tricolor_zz: {
+    nombre: 'Tricolor ZZ', ref: 'SS26',
+    rayas: [
+      { hex:'#00205B', pantone:'19-4034 TCX', nombre:'Navy Blazer',   ancho:2.0 },
+      { hex:'#EFE9DA', pantone:'11-4001 TCX', nombre:'Whisper White', ancho:1.5 },
+      { hex:'#72202B', pantone:'19-1724 TCX', nombre:'Burgundy',      ancho:1.0 },
+    ]
+  },
+  breton: {
+    nombre: 'Breton Clásico', ref: 'SS26',
+    rayas: [
+      { hex:'#003580', pantone:'19-3832 TCX', nombre:'Skydiver',    ancho:1.5 },
+      { hex:'#F5F1E8', pantone:'11-0601 TCX', nombre:'Off White',   ancho:2.5 },
+    ]
+  },
+  negro_blanco: {
+    nombre: 'Negro + Blanco', ref: 'SS26',
+    rayas: [
+      { hex:'#1A1A1A', pantone:'19-0303 TCX', nombre:'Black',     ancho:1.5 },
+      { hex:'#F5F1E8', pantone:'11-0601 TCX', nombre:'Off White', ancho:1.5 },
+    ]
+  },
+  rojo_blanco: {
+    nombre: 'Rojo + Blanco Sport', ref: 'SS26',
+    rayas: [
+      { hex:'#BF1522', pantone:'18-1660 TCX', nombre:'Fiesta Red', ancho:2.0 },
+      { hex:'#F5F1E8', pantone:'11-0601 TCX', nombre:'Off White',  ancho:2.0 },
+    ]
+  },
+  terracotta: {
+    nombre: 'Terracotta SS26', ref: 'SS26',
+    rayas: [
+      { hex:'#C17B5B', pantone:'16-1438 TCX', nombre:'Terracotta', ancho:2.5 },
+      { hex:'#F0E6C4', pantone:'12-0712 TCX', nombre:'Warm Ivory', ancho:2.0 },
+      { hex:'#8B4513', pantone:'18-1142 TCX', nombre:'Caramel',    ancho:0.8 },
+    ]
+  },
+  varsity: {
+    nombre: 'Multicolor Varsity', ref: 'AW26',
+    rayas: [
+      { hex:'#00205B', pantone:'19-4034 TCX', nombre:'Navy Blazer',   ancho:1.5 },
+      { hex:'#EFE9DA', pantone:'11-4001 TCX', nombre:'Whisper White', ancho:0.5 },
+      { hex:'#72202B', pantone:'19-1724 TCX', nombre:'Burgundy',      ancho:0.8 },
+      { hex:'#EFE9DA', pantone:'11-4001 TCX', nombre:'Whisper White', ancho:0.5 },
+      { hex:'#00205B', pantone:'19-4034 TCX', nombre:'Navy Blazer',   ancho:1.0 },
+    ]
+  },
+  lavanda: {
+    nombre: 'Lavanda + Blanco Roto', ref: 'SS26',
+    rayas: [
+      { hex:'#B8A9C9', pantone:'16-3810 TCX', nombre:'Pastel Lilac', ancho:2.0 },
+      { hex:'#F5F1E8', pantone:'11-0601 TCX', nombre:'Off White',    ancho:1.5 },
+      { hex:'#8B7BA4', pantone:'18-3633 TCX', nombre:'Violet Tulip', ancho:0.8 },
+      { hex:'#F5F1E8', pantone:'11-0601 TCX', nombre:'Off White',    ancho:1.5 },
+    ]
+  },
+};
+
+// ════════════════════════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════════════════════════
+let orientation = 'horizontal';
+let rowId = 0;
+
+function setOrient(val) {
+  orientation = val;
+  document.getElementById('btn-horiz').classList.toggle('active', val === 'horizontal');
+  document.getElementById('btn-vert').classList.toggle('active', val === 'vertical');
+  updatePreview();
+}
+
+function loadPreset() {
+  const key = document.getElementById('preset-select').value;
+  if (!key || !PRESETS[key]) return;
+  const p = PRESETS[key];
+  document.getElementById('nombre-variante').value = p.nombre;
+  document.getElementById('ref-variante').value   = p.ref || '';
+  document.getElementById('stripes-container').innerHTML = '';
+  p.rayas.forEach(r => addStripe(r.hex, r.pantone, r.nombre, r.ancho));
+  updatePreview();
+}
+
+function addStripe(hex, pantone, nombre, ancho) {
+  const id  = 'sr-' + (rowId++);
+  const row = document.createElement('div');
+  row.className = 'stripe-row';
+  row.id = id;
+  row.innerHTML = `
+    <input type="color" value="${hex}" oninput="scheduleUpdate()">
+    <input type="text"   value="${pantone}" placeholder="19-4034 TCX" style="font-family:monospace;font-size:10px;">
+    <input type="text"   value="${nombre}"  placeholder="Nombre color">
+    <input type="number" value="${ancho}"   min="0.05" max="30" step="0.05" oninput="scheduleUpdate()">
+    <button class="btn-remove" onclick="removeStripe('${id}')" title="Eliminar">✕</button>
+  `;
+  document.getElementById('stripes-container').appendChild(row);
+  updateRaport();
+}
+
+function removeStripe(id) {
+  const el = document.getElementById(id);
+  if (el) { el.remove(); updateRaport(); scheduleUpdate(); }
+}
+
+function getStripes() {
+  return [...document.querySelectorAll('.stripe-row')].map(row => {
+    const inputs = row.querySelectorAll('input');
+    return {
+      hex:    inputs[0].value,
+      pantone:inputs[1].value.trim(),
+      nombre: inputs[2].value.trim(),
+      ancho:  Math.max(0.05, parseFloat(inputs[3].value) || 1.0),
+    };
+  }).filter(s => s.hex);
+}
+
+function updateRaport() {
+  const stripes = getStripes();
+  const total = stripes.reduce((s,r) => s + r.ancho, 0);
+  const el = document.getElementById('raport-info');
+  if (stripes.length === 0) {
+    el.innerHTML = 'Sin rayas definidas.';
+  } else {
+    el.innerHTML = `<strong>Raport: ${total.toFixed(2)} cm</strong> · ${stripes.length} raya${stripes.length !== 1 ? 's' : ''} · Se repite cada ${total.toFixed(2)} cm`;
+  }
+}
+
+// Debounce para no redibujar en cada tecla
+let _timer = null;
+function scheduleUpdate() {
+  clearTimeout(_timer);
+  _timer = setTimeout(() => { updateRaport(); updatePreview(); }, 120);
+}
+
+// ════════════════════════════════════════════════════════════
+//  RENDERING HELPERS
+// ════════════════════════════════════════════════════════════
+
+function hexToRGB(hex) {
+  return {
+    r: parseInt(hex.slice(1,3), 16),
+    g: parseInt(hex.slice(3,5), 16),
+    b: parseInt(hex.slice(5,7), 16),
+  };
+}
+
+function isLight(hex) {
+  const { r,g,b } = hexToRGB(hex);
+  return (0.299*r + 0.587*g + 0.114*b) > 155;
+}
+
+// Tile stripes filling a rect (absolute canvas coords)
+function fillStripes(ctx, x, y, W, H, stripes, orient, pxPerCm) {
+  const totalPx = stripes.reduce((s,r) => s + r.ancho * pxPerCm, 0);
+  if (totalPx <= 0) return;
+
+  if (orient === 'horizontal') {
+    let ty = y - (totalPx - ((y % totalPx + totalPx) % totalPx));
+    while (ty < y + H) {
+      let ry = ty;
+      for (const s of stripes) {
+        const h = s.ancho * pxPerCm;
+        ctx.fillStyle = s.hex;
+        ctx.fillRect(x, ry, W, h + 0.5); // +0.5 anti-gap
+        ry += h;
+      }
+      ty += totalPx;
+    }
+  } else {
+    let tx = x - (totalPx - ((x % totalPx + totalPx) % totalPx));
+    while (tx < x + W) {
+      let rx = tx;
+      for (const s of stripes) {
+        const w = s.ancho * pxPerCm;
+        ctx.fillStyle = s.hex;
+        ctx.fillRect(rx, y, w + 0.5, H);
+        rx += w;
+      }
+      tx += totalPx;
+    }
+  }
+}
+
+// Garment (camiseta sin mangas) Path2D
+function garmentPath(W, H) {
+  const p    = new Path2D();
+  const sw   = W * 0.17;   // strap width
+  const nd   = H * 0.13;   // neck depth
+  const nhw  = W * 0.135;  // neck half-width
+
+  p.moveTo(0, 0);                                   // top-left
+  p.lineTo(sw, 0);                                  // left strap inner top
+  // left neck curve down to centre
+  p.bezierCurveTo(sw, nd * 0.4,   W/2 - nhw, nd * 0.85,  W/2, nd);
+  // right neck curve up
+  p.bezierCurveTo(W/2 + nhw, nd * 0.85,  W - sw, nd * 0.4,  W - sw, 0);
+  p.lineTo(W, 0);                                   // top-right
+  // right side — curves inward at hip
+  p.bezierCurveTo(W * 1.01, H * 0.38,  W * 0.99, H * 0.72,  W * 0.93, H);
+  p.lineTo(W * 0.07, H);                            // hemline
+  // left side
+  p.bezierCurveTo(W * 0.01, H * 0.72,  W * -0.01, H * 0.38,  0, 0);
+  p.closePath();
+  return p;
+}
+
+// Draw garment with stripes clipped inside
+function drawGarment(ctx, x, y, W, H, stripes, orient, pxPerCm) {
+  if (W <= 0 || H <= 0 || stripes.length === 0) return;
+  const path = garmentPath(W, H);
+
+  ctx.save();
+  ctx.translate(x, y);
+
+  // Fill background (in case no stripes)
+  ctx.fillStyle = '#EEE';
+  ctx.fill(path);
+
+  // Clip and tile stripes
+  ctx.save();
+  ctx.clip(path);
+  fillStripes(ctx, 0, 0, W, H, stripes, orient, pxPerCm);
+  ctx.restore();
+
+  // Subtle shadow on the garment
+  ctx.save();
+  ctx.shadowColor = 'rgba(0,0,0,0.15)';
+  ctx.shadowBlur  = 8;
+  ctx.shadowOffsetX = 2;
+  ctx.shadowOffsetY = 3;
+  ctx.strokeStyle = 'rgba(0,0,0,0.0)'; // shadow only trick
+  ctx.lineWidth = 1;
+  ctx.stroke(path);
+  ctx.restore();
+
+  // Outline
+  ctx.strokeStyle = 'rgba(0,0,0,0.22)';
+  ctx.lineWidth   = 1.5;
+  ctx.stroke(path);
+
+  ctx.restore();
+}
+
+// Swatch strip (proportional widths)
+function drawSwatchStrip(ctx, x, y, W, H, stripes) {
+  const total = stripes.reduce((s,r) => s + r.ancho, 0);
+  if (total <= 0) return;
+  let rx = x;
+  for (const s of stripes) {
+    const w = (s.ancho / total) * W;
+    ctx.fillStyle = s.hex;
+    ctx.fillRect(rx, y, w + 0.5, H);
+    rx += w;
+  }
+  ctx.strokeStyle = 'rgba(0,0,0,0.1)';
+  ctx.lineWidth   = 0.5;
+  ctx.strokeRect(x, y, W, H);
+}
+
+// Rounded rect
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+// ════════════════════════════════════════════════════════════
+//  DRAW PATRON PAGE (full-bleed stripes)
+// ════════════════════════════════════════════════════════════
+function drawPatron(canvas, stripes, orient, nombre, ref) {
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const PX = 32; // px per cm
+
+  ctx.clearRect(0, 0, W, H);
+
+  if (stripes.length === 0) {
+    ctx.fillStyle = '#F5F3EF';
+    ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = '#CCC';
+    ctx.font = '16px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('Sin rayas definidas', W/2, H/2);
+    return;
+  }
+
+  // Full-bleed stripes
+  fillStripes(ctx, 0, 0, W, H, stripes, orient, PX);
+
+  // Header bar overlay
+  ctx.fillStyle = 'rgba(27,42,74,0.82)';
+  ctx.fillRect(0, 0, W, 44);
+  ctx.fillStyle = '#FFF';
+  ctx.font = 'bold 11px sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('ZZ STUDIO · ZIG ZAG CONFECCIÓN S.A.', 20, 16);
+  ctx.font = '10px sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.7)';
+  ctx.fillText('PATRÓN DE RAYAS — FULL BLEED', 20, 32);
+
+  // Footer bar overlay
+  ctx.fillStyle = 'rgba(27,42,74,0.82)';
+  ctx.fillRect(0, H - 38, W, 38);
+
+  const raportCM = stripes.reduce((s,r) => s + r.ancho, 0).toFixed(2);
+  ctx.fillStyle = 'rgba(255,255,255,0.65)';
+  ctx.font = '10px sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText(`Raport: ${raportCM} cm · ${stripes.length} rayas · Orientación: ${orient === 'horizontal' ? 'Horizontal' : 'Vertical'}`, 20, H - 20);
+
+  ctx.fillStyle = '#FFF';
+  ctx.font = 'bold 14px sans-serif';
+  ctx.textAlign = 'right';
+  ctx.fillText(nombre + (ref ? '  ·  ' + ref : ''), W - 20, H - 15);
+}
+
+// ════════════════════════════════════════════════════════════
+//  DRAW FICHA PAGE
+// ════════════════════════════════════════════════════════════
+function drawFicha(canvas, stripes, orient, nombre, ref) {
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const PAD = 22;
+  const NAVY = '#1B2A4A';
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, 0, W, H);
+
+  // ── Header bar ──────────────────────────────────────────
+  const HDR = 50;
+  ctx.fillStyle = NAVY;
+  ctx.fillRect(0, 0, W, HDR);
+
+  // Logo box
+  ctx.fillStyle = '#FFF';
+  ctx.fillRect(PAD, 11, 38, 28);
+  ctx.fillStyle = NAVY;
+  ctx.font = 'bold 18px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('ZZ', PAD + 19, 30);
+
+  // Studio text
+  ctx.fillStyle = '#FFF';
+  ctx.font = 'bold 12px sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('STUDIO', PAD + 46, 22);
+  ctx.font = '10px sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
+  ctx.fillText('Zig Zag Confección S.A.', PAD + 46, 36);
+
+  // Nombre + ref right side
+  ctx.textAlign = 'right';
+  ctx.fillStyle = '#FFF';
+  ctx.font = 'bold 13px sans-serif';
+  ctx.fillText(nombre || 'Variante', W - PAD, 24);
+  ctx.font = '10px sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.65)';
+  ctx.fillText(ref || '', W - PAD, 40);
+
+  ctx.textAlign = 'left';
+
+  // ── Layout ──────────────────────────────────────────────
+  const bodyY = HDR + 10;
+  const bodyH = H - bodyY - PAD - 24; // leave room for footer
+  const col1W = W * 0.45;
+  const col2X = col1W + 14;
+  const col2W = W - col2X - PAD;
+
+  // Vertical divider
+  ctx.strokeStyle = '#E8E4DC';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(col1W + 7, bodyY + 16);
+  ctx.lineTo(col1W + 7, H - 28);
+  ctx.stroke();
+
+  // ── Left: Silueta ────────────────────────────────────────
+  const miniLabel = (x, y, text) => {
+    ctx.fillStyle = '#AAAAAA';
+    ctx.font = 'bold 8px sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText(text, x, y);
+  };
+
+  miniLabel(PAD, bodyY + 10, 'SILUETA CON PATRÓN');
+
+  const garX    = PAD + 8;
+  const garY    = bodyY + 18;
+  const garW    = col1W - PAD - 16;
+  const swH     = 20;
+  const garH    = bodyH - 18 - swH - 6;
+  const PX_CM   = 26; // px per cm for garment preview
+
+  if (stripes.length > 0) {
+    drawGarment(ctx, garX, garY, garW, garH, stripes, orient, PX_CM);
+    // Swatch strip under garment
+    miniLabel(garX, garY + garH + 13, 'RAPORT DE COLOR');
+    drawSwatchStrip(ctx, garX, garY + garH + 16, garW, swH - 6, stripes);
+  } else {
+    ctx.fillStyle = '#F5F3EF';
+    roundRect(ctx, garX, garY, garW, garH, 6);
+    ctx.fill();
+    ctx.fillStyle = '#CCC';
+    ctx.font = '11px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('Añade rayas en el panel izquierdo', garX + garW/2, garY + garH/2);
+    ctx.textAlign = 'left';
+  }
+
+  // ── Right: Pantone chips ─────────────────────────────────
+  miniLabel(col2X, bodyY + 10, 'COMPOSICIÓN DE COLORES · PANTONE TCX');
+
+  // Unique colors (keep first occurrence order)
+  const seen = new Map();
+  stripes.forEach(s => {
+    const k = s.hex.toUpperCase();
+    if (!seen.has(k)) seen.set(k, s);
+  });
+  const uniqueColors = [...seen.values()];
+
+  const chipStartY = bodyY + 18;
+  const chipGap    = 6;
+  const maxChips   = uniqueColors.length || 1;
+  const chipH      = Math.min(62, (bodyH - 18 - chipGap) / maxChips - chipGap);
+  let   chipY      = chipStartY;
+
+  for (const stripe of uniqueColors) {
+    // Draw chip
+    roundRect(ctx, col2X, chipY, col2W, chipH, 4);
+    ctx.fillStyle = stripe.hex;
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,0.1)';
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+
+    // Text on chip
+    const light = isLight(stripe.hex);
+    const textColor = light ? '#333' : '#FFF';
+
+    ctx.fillStyle = textColor;
+    ctx.font = `bold ${Math.min(12, chipH * 0.28)}px 'Courier New', monospace`;
+    ctx.textAlign = 'left';
+    ctx.fillText(stripe.pantone || 'Custom', col2X + 8, chipY + chipH * 0.42);
+
+    ctx.font = `${Math.min(10, chipH * 0.22)}px sans-serif`;
+    ctx.fillStyle = light ? '#555' : 'rgba(255,255,255,0.85)';
+    ctx.fillText(stripe.nombre || '', col2X + 8, chipY + chipH * 0.68);
+
+    // Width label right side
+    const matchStripes = stripes.filter(s => s.hex.toUpperCase() === stripe.hex.toUpperCase());
+    const totalW = matchStripes.reduce((sum,s) => sum + s.ancho, 0);
+    ctx.font = `${Math.min(10, chipH * 0.22)}px sans-serif`;
+    ctx.fillStyle = light ? 'rgba(0,0,0,0.45)' : 'rgba(255,255,255,0.6)';
+    ctx.textAlign = 'right';
+    ctx.fillText(totalW.toFixed(1) + ' cm', col2X + col2W - 8, chipY + chipH * 0.42);
+
+    // Hex code small
+    ctx.fillText(stripe.hex.toUpperCase(), col2X + col2W - 8, chipY + chipH * 0.68);
+
+    ctx.textAlign = 'left';
+    chipY += chipH + chipGap;
+  }
+
+  // Raport info below chips
+  if (stripes.length > 0) {
+    const raportCM = stripes.reduce((s,r) => s + r.ancho, 0).toFixed(2);
+    const infoY = chipY + 8;
+    ctx.fillStyle = '#F5F3EF';
+    roundRect(ctx, col2X, infoY, col2W, 32, 4);
+    ctx.fill();
+    ctx.fillStyle = '#888';
+    ctx.font = '9px sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText(`Raport: ${raportCM} cm  ·  ${stripes.length} rayas  ·  Orientación: ${orient === 'horizontal' ? 'Horizontal' : 'Vertical'}`, col2X + 8, infoY + 14);
+    ctx.fillStyle = '#AAA';
+    ctx.fillText(`${uniqueColors.length} color${uniqueColors.length !== 1 ? 'es' : ''} únicos`, col2X + 8, infoY + 25);
+  }
+
+  // ── Footer ───────────────────────────────────────────────
+  ctx.fillStyle = '#E8E4DC';
+  ctx.fillRect(0, H - 22, W, 22);
+  ctx.fillStyle = '#888';
+  ctx.font = '8.5px sans-serif';
+  ctx.textAlign = 'left';
+  const now = new Date();
+  ctx.fillText(`ZZ Studio  ·  Generado: ${now.toLocaleDateString('es-ES')}  ·  Zig Zag Confección S.A.`, PAD, H - 7);
+  ctx.textAlign = 'right';
+  ctx.fillText('zz-rayas.html — Sin servidor, sin instalación', W - PAD, H - 7);
+  ctx.textAlign = 'left';
+}
+
+// ════════════════════════════════════════════════════════════
+//  UPDATE PREVIEW
+// ════════════════════════════════════════════════════════════
+function updatePreview() {
+  updateRaport();
+  const stripes = getStripes();
+  const nombre  = document.getElementById('nombre-variante').value || 'Variante';
+  const ref     = document.getElementById('ref-variante').value    || '';
+
+  drawFicha (document.getElementById('canvas-ficha'),  stripes, orientation, nombre, ref);
+  drawPatron(document.getElementById('canvas-patron'), stripes, orientation, nombre, ref);
+}
+
+// ════════════════════════════════════════════════════════════
+//  PDF EXPORT
+// ════════════════════════════════════════════════════════════
+async function downloadPDF() {
+  const stripes = getStripes();
+  if (stripes.length === 0) {
+    alert('Añade al menos una raya para generar la ficha.');
+    return;
+  }
+
+  if (!window.jspdf) {
+    alert('Error: jsPDF no está cargado. Comprueba tu conexión a internet e inténtalo de nuevo.');
+    return;
+  }
+
+  const nombre = document.getElementById('nombre-variante').value || 'Variante';
+  const ref    = document.getElementById('ref-variante').value    || '';
+
+  // High-res canvases for PDF (A4 landscape at ~135dpi → 1587 × 1123)
+  const PDF_W = 1587, PDF_H = 1123;
+
+  const patronC = document.createElement('canvas');
+  patronC.width = PDF_W; patronC.height = PDF_H;
+  drawPatron(patronC, stripes, orientation, nombre, ref);
+
+  const fichaC = document.createElement('canvas');
+  fichaC.width = PDF_W; fichaC.height = PDF_H;
+  drawFicha(fichaC, stripes, orientation, nombre, ref);
+
+  // Build PDF
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+
+  // Page 1: Patron
+  doc.addImage(patronC.toDataURL('image/jpeg', 0.94), 'JPEG', 0, 0, 297, 210);
+
+  // Page 2: Ficha
+  doc.addPage('a4', 'landscape');
+  doc.addImage(fichaC.toDataURL('image/jpeg', 0.94), 'JPEG', 0, 0, 297, 210);
+
+  const slug = nombre.replace(/[^a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s]/g, '').replace(/\s+/g,'_').slice(0,30);
+  doc.save(`ZZ_Rayas_${slug}.pdf`);
+}
+
+// ════════════════════════════════════════════════════════════
+//  EVENT LISTENERS — live update on typing
+// ════════════════════════════════════════════════════════════
+document.addEventListener('input', e => {
+  if (
+    e.target.closest('#stripes-container') ||
+    e.target.id === 'nombre-variante'      ||
+    e.target.id === 'ref-variante'
+  ) { scheduleUpdate(); }
+});
+
+// ════════════════════════════════════════════════════════════
+//  INIT — load default preset
+// ════════════════════════════════════════════════════════════
+document.getElementById('preset-select').value = 'navy_crema';
+loadPreset();
+</script>
+</body>
+</html>
